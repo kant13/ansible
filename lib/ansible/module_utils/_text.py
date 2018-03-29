@@ -166,7 +166,7 @@ def to_bytes(obj, encoding='utf-8', errors=None, nonstring='simplerepr'):
     return to_bytes(value, encoding, errors)
 
 
-def to_text(obj, encoding='windows-1251', errors=None, nonstring='simplerepr'):
+def to_text(obj, encoding='utf-8', errors=None, nonstring='simplerepr'):
     """Make sure that a string is a text string
 
     :arg obj: An object to make sure is a text string.  In most cases this
