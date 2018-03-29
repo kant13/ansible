@@ -46,6 +46,21 @@ Function Write-DebugLog($msg) {
     }
 }
 
+function ConvertTo-Encoding ([string]$From, [string]$To)
+{
+    Begin
+    {
+        $encFrom = [System.Text.Encoding]::GetEncoding($from)
+        $encTo = [System.Text.Encoding]::GetEncoding($to)
+    }
+    Process
+    {
+        $bytes = $encTo.GetBytes($_)
+        $bytes = [System.Text.Encoding]::Convert($encFrom, $encTo, $bytes)
+        $encTo.GetString($bytes)
+    }
+}
+
 Function Get-CategoryGuid($category_name) {
     $guid = switch -exact ($category_name) {
         "Application" {"5C9376AB-8CE6-464A-B136-22113DD69801"}
@@ -193,6 +208,8 @@ if ($check_mode -or $state -eq "searched") {
     if ($updates_to_install.Count -gt 0 -and ($state -ne "searched")) {
         $result.changed = $true
     }
+    $result = $result ConvertTo-Encoding cp866 utf-8
+
     Exit-Json -obj $result
 }
 
