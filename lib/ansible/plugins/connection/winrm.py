@@ -408,9 +408,8 @@ class Connection(ConnectionBase):
             # FUTURE: this should probably be done internally by pywinrm
             response = Response(tuple(to_text(v) if isinstance(v, binary_type) else v for v in resptuple))
             response1 = Response(tuple(to_text(v, encoding='cp866') if isinstance(v, binary_type) else v for v in resptuple))
+            display.vvvvv('response %r' %response.std_out)
             display.vvvvv('response111 %r' %response1.std_out)
-            response2 = Response(tuple(to_text(v, encoding='windows-1251') if isinstance(v, binary_type) else v for v in resptuple))
-            display.vvvvv('response222 %r' %response2.std_out)
 
             # TODO: check result from response and set stdin_push_failed if we have nonzero
             if from_exec:
@@ -419,7 +418,6 @@ class Connection(ConnectionBase):
                 display.vvvvvv('WINRM RESULT %r' % to_text(response), host=self._winrm_host)
 
             display.vvvvvv('WINRM STDOUT1 %s' % to_text(response1.std_out, encoding='cp866'), host=self._winrm_host)
-            display.vvvvvv('WINRM STDOUT2 %s' % to_text(response2.std_out, encoding='windows-1251'), host=self._winrm_host)
 
 
             display.vvvvvv('WINRM STDOUT %s' % to_text(response.std_out), host=self._winrm_host)
