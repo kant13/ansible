@@ -5,8 +5,6 @@
 # Copyright (c) 2017 Ansible Project
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
-
 #Requires -Module Ansible.ModuleUtils.Legacy
 
 <# Most of the Windows Update API will not run under a remote token, which a
@@ -27,6 +25,9 @@ $log_path = Get-AnsibleParam -obj $params -name "log_path" -type "path"
 $state = Get-AnsibleParam -obj $params -name "state" -type "str" -default "installed" -validateset "installed", "searched"
 $blacklist = Get-AnsibleParam -obj $params -name "blacklist" -type "list"
 $whitelist = Get-AnsibleParam -obj $params -name "whitelist" -type "list"
+
+[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+
 
 $result = @{
     changed = $false
