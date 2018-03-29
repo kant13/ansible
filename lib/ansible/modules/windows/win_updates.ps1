@@ -26,8 +26,9 @@ $state = Get-AnsibleParam -obj $params -name "state" -type "str" -default "insta
 $blacklist = Get-AnsibleParam -obj $params -name "blacklist" -type "list"
 $whitelist = Get-AnsibleParam -obj $params -name "whitelist" -type "list"
 
-[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf8")
+#[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
 #$OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+$PSDefaultParameterValues['*:Encoding'] = 'utf8'
 
 $result = @{
     changed = $false
