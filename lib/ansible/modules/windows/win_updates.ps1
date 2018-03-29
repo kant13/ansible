@@ -41,6 +41,18 @@ Function Write-DebugLog($msg) {
     }
 }
 
+function ConvertTo-Encoding (){
+    Begin{
+        $encFrom = [Console]::OutputEncoding
+        $encTo = [System.Text.Encoding]::GetEncoding("utf-8")
+    }
+    Process{
+        $bytes = $encTo.GetBytes($_)
+        $bytes = [System.Text.Encoding]::Convert($encFrom, $encTo, $bytes)
+        $encTo.GetString($bytes)
+    }
+}
+
 Function Get-CategoryGuid($category_name) {
     $guid = switch -exact ($category_name) {
         "Application" {"5C9376AB-8CE6-464A-B136-22113DD69801"}
@@ -110,7 +122,7 @@ try {
 
 foreach ($update in $search_result.Updates) {
     $update_info = @{
-        title = $update.Title
+        title = $update.Title | ConvertTo-Encoding
         # TODO: pluck the first KB out (since most have just one)?
         kb = $update.KBArticleIDs
         id = $update.Identity.UpdateId
