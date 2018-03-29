@@ -317,9 +317,9 @@ $result.failed_update_count = $update_fail_count
 if ($update_fail_count -gt 0) {
     Fail-Json -obj $result -msg "Failed to install one or more updates"
 }
+$outputencodelocal = [Console]::OutputEncoding
+Write-DebugLog -msg "$outputencodelocal: $($outputencodelocal)"
 
 Write-DebugLog -msg "Return value:`r`n$(ConvertTo-Json -InputObject $result -Depth 99)"
-$outputencodelocal = [Console]::OutputEncoding
-Write-DebugLog -msg "$outputencodelocal $($outputencodelocal)"
 Exit-Json $result
 
