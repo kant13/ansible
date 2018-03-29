@@ -185,6 +185,8 @@ $result.installed_update_count = 0
 
 # Early exit of check mode/state=searched as it cannot do more after this
 if ($check_mode -or $state -eq "searched") {
+    $outputencodelocal = [Console]::OutputEncoding
+    Write-DebugLog -msg "Outputencodelocal $outputencodelocal"
     Write-DebugLog -msg "Check mode: exiting..."
     Write-DebugLog -msg "Return value:`r`n$(ConvertTo-Json -InputObject $result -Depth 99)"
 
@@ -320,6 +322,6 @@ if ($update_fail_count -gt 0) {
 $outputencodelocal = [System.Text.Encoding]::GetEncoding("utf-8")
 Write-DebugLog -msg "Outputencodelocal $outputencodelocal"
 
-Write-DebugLog -msg "1Return value:`r`n$(ConvertTo-Json -InputObject $result -Depth 99)"
+Write-DebugLog -msg "Return value:`r`n$(ConvertTo-Json -InputObject $result -Depth 99)"
 Exit-Json $result
 
