@@ -5,6 +5,8 @@
 # Copyright (c) 2017 Ansible Project
 # GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
+[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+
 #Requires -Module Ansible.ModuleUtils.Legacy
 
 <# Most of the Windows Update API will not run under a remote token, which a
@@ -16,7 +18,6 @@ This means we don't have to mess around with scheduled tasks. #>
 
 $ErrorActionPreference = "Stop"
 
-[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
 
 $params = Parse-Args -arguments $args -supports_check_mode $true
 $check_mode = Get-AnsibleParam -obj $params -name "_ansible_check_mode" -type "bool" -default $false
