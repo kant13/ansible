@@ -27,7 +27,7 @@ $blacklist = Get-AnsibleParam -obj $params -name "blacklist" -type "list"
 $whitelist = Get-AnsibleParam -obj $params -name "whitelist" -type "list"
 
 #[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
-$OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+#$OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
 
 $result = @{
     changed = $false
