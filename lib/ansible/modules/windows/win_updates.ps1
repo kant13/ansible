@@ -28,7 +28,6 @@ $whitelist = Get-AnsibleParam -obj $params -name "whitelist" -type "list"
 
 [Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
 
-
 $result = @{
     changed = $false
     updates = @{}
