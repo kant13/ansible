@@ -208,7 +208,6 @@ if ($check_mode -or $state -eq "searched") {
     if ($updates_to_install.Count -gt 0 -and ($state -ne "searched")) {
         $result.changed = $true
     }
-    $result = [System.Text.Encoding]::UTF8.GetString([System.Text.Encoding]::GetEncoding("cp866").GetBytes($result))
 
     Exit-Json -obj $result
 }
