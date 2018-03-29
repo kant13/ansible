@@ -12,6 +12,8 @@ remote WinRM session always has. We set the below AnsibleRequires flag to
 require become being used when executing the module to bypass this restriction.
 This means we don't have to mess around with scheduled tasks. #>
 
+[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+
 #AnsibleRequires -Become
 
 $ErrorActionPreference = "Stop"
