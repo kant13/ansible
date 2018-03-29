@@ -407,7 +407,7 @@ class Connection(ConnectionBase):
             # ensure stdout/stderr are text for py3
             # FUTURE: this should probably be done internally by pywinrm
             response = Response(tuple(to_text(v) if isinstance(v, binary_type) else v for v in resptuple))
-            display.vvvvv('response %r' %response)
+            display.vvvvv('response %r' %response.std_out)
             # TODO: check result from response and set stdin_push_failed if we have nonzero
             if from_exec:
                 display.vvvvv('WINRM RESULT %r' % to_text(response), host=self._winrm_host)
