@@ -43,7 +43,11 @@ try:
 except LookupError:
     HAS_SURROGATEESCAPE = False
 
-
+try:
+    from __main__ import display
+except ImportError:
+    from ansible.utils.display import Display
+    display = Display()
 _COMPOSED_ERROR_HANDLERS = frozenset((None, 'surrogate_or_replace',
                                       'surrogate_or_strict',
                                       'surrogate_then_replace'))
@@ -218,6 +222,7 @@ def to_text(obj, encoding='utf-8', errors=None, nonstring='simplerepr'):
         Added the surrogate_then_replace error handler and made it the default error handler.
     """
     if isinstance(obj, text_type):
+        display.vvvvv('text_type')
         return obj
 
     if errors in _COMPOSED_ERROR_HANDLERS:
@@ -229,6 +234,7 @@ def to_text(obj, encoding='utf-8', errors=None, nonstring='simplerepr'):
             errors = 'replace'
 
     if isinstance(obj, binary_type):
+        display.vvvvv('binary')
         # Note: We don't need special handling for surrogate_then_replace
         # because all bytes will either be made into surrogates or are valid
         # to decode.
