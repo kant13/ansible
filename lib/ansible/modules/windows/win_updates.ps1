@@ -26,9 +26,9 @@ $state = Get-AnsibleParam -obj $params -name "state" -type "str" -default "insta
 $blacklist = Get-AnsibleParam -obj $params -name "blacklist" -type "list"
 $whitelist = Get-AnsibleParam -obj $params -name "whitelist" -type "list"
 
-#[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
 #$OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
-$PSDefaultParameterValues['*:Encoding'] = 'utf8'
+#$PSDefaultParameterValues['*:Encoding'] = 'utf8'
 
 $result = @{
     changed = $false
@@ -319,6 +319,7 @@ if ($update_fail_count -gt 0) {
 }
 
 Write-DebugLog -msg "Return value:`r`n$(ConvertTo-Json -InputObject $result -Depth 99)"
-
+$outputencodelocal = [Console]::OutputEncoding
+Write-DebugLog -msg "$outputencodelocal $($outputencodelocal)"
 Exit-Json $result
 
