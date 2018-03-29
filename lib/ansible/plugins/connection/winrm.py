@@ -418,8 +418,8 @@ class Connection(ConnectionBase):
             else:
                 display.vvvvvv('WINRM RESULT %r' % to_text(response), host=self._winrm_host)
 
-            display.vvvvvv('WINRM STDOUT1 %s' % to_text(response1.std_out), host=self._winrm_host)
-            display.vvvvvv('WINRM STDOUT2 %s' % to_text(response2.std_out), host=self._winrm_host)
+            display.vvvvvv('WINRM STDOUT1 %s' % to_text(response1.std_out, encoding='cp866'), host=self._winrm_host)
+            display.vvvvvv('WINRM STDOUT2 %s' % to_text(response2.std_out, encoding='windows-1251'), host=self._winrm_host)
 
 
             display.vvvvvv('WINRM STDOUT %s' % to_text(response.std_out), host=self._winrm_host)
