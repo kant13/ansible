@@ -27,7 +27,7 @@ $blacklist = Get-AnsibleParam -obj $params -name "blacklist" -type "list"
 $whitelist = Get-AnsibleParam -obj $params -name "whitelist" -type "list"
 
 [Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
-#chcp 65001
+chcp 65001
 #$OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
 #$PSDefaultParameterValues['*:Encoding'] = 'utf8'
 
@@ -114,7 +114,7 @@ $criteria_list = $category_guids | ForEach-Object { "($criteria_base AND Categor
 $criteria = [string]::Join(" OR", $criteria_list)
 Write-DebugLog -msg "Search criteria: $criteria"
 
-[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("cp866")
+
 
 Write-DebugLog -msg "Searching for updates to install in category Ids $category_guids..."
 try {
