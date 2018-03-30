@@ -114,6 +114,8 @@ $criteria_list = $category_guids | ForEach-Object { "($criteria_base AND Categor
 $criteria = [string]::Join(" OR", $criteria_list)
 Write-DebugLog -msg "Search criteria: $criteria"
 
+[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+
 Write-DebugLog -msg "Searching for updates to install in category Ids $category_guids..."
 try {
     $search_result = $searcher.Search($criteria)
